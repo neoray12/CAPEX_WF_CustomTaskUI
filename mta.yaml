@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: CAPEX_WF_CustomTaskUI
+version: 0.0.1
+modules:
+- name: CAPEX_WF_CustomTaskUI-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: uaa_CAPEX_WF_CustomTaskUI
+    parameters:
+      service-key:
+        name: uaa_CAPEX_WF_CustomTaskUI-key
+  - name: CAPEX_WF_CustomTaskUI_html_repo_host
+    parameters:
+      service-key:
+        name: CAPEX_WF_CustomTaskUI_html_repo_host-key
+  - name: workflow_mta
+    parameters:
+      service-key:
+        name: CAPEX_WF_Workflow-workflow_mta-credentials
+  - name: CAPEX_WF_CustomTaskUI-destination-service
+    parameters:
+      content-target: true
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: capex_wf_customtaskui_CAPEX_WF_CustomTaskUI_html_repo_host
+          ServiceInstanceName: CAPEX_WF_CustomTaskUI-html5-app-host-service
+          ServiceKeyName: CAPEX_WF_CustomTaskUI_html_repo_host-key
+          sap.cloud.service: capex.wf.customtaskui
+        - Authentication: OAuth2UserTokenExchange
+          Name: capex_wf_customtaskui_uaa_CAPEX_WF_CustomTaskUI
+          ServiceInstanceName: CAPEX_WF_CustomTaskUI-xsuaa-service
+          ServiceKeyName: uaa_CAPEX_WF_CustomTaskUI-key
+          sap.cloud.service: capex.wf.customtaskui
+        - Name: Workflow_mta_Endpoint
+          Authentication: OAuth2UserTokenExchange
+          ServiceInstanceName: workflow_mta
+          ServiceKeyName: CAPEX_WF_Workflow-workflow_mta-credentials
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: CAPEX_WF_CustomTaskUI_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: CAPEX_WF_CustomTaskUI_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - CAPEX_WF_CustomTaskUI-content.zip
+      name: CAPEX_WF_CustomTaskUI
+      target-path: resources/
+- name: CAPEX_WF_CustomTaskUI
+  type: html5
+  path: CAPEX_WF_CustomTaskUI
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: CAPEX_WF_CustomTaskUI-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-name: CAPEX_WF_CustomTaskUI-destination-service
+    service-plan: lite
+- name: CAPEX_WF_CustomTaskUI_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: CAPEX_WF_CustomTaskUI-html5-app-host-service
+    service-plan: app-host
+- name: uaa_CAPEX_WF_CustomTaskUI
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: CAPEX_WF_CustomTaskUI-xsuaa-service
+    service-plan: application
+- name: workflow_mta
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service: workflow
+    service-plan: standard
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
