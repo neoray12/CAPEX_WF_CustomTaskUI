@@ -1,117 +1,139 @@
 {
-	"_version": "1.12.0",
-	"sap.app": {
-		"id": "sap.wf.demo.CAPEX_WF_CustomTaskUI",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
-		"resources": "resources.json",
-		"ach": "ach",
-		"sourceTemplate": {
-			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
-			"version": "1.40.12"
-        },
-        "crossNavigation": {
-            "inbounds": {
-                "intent1": {
-                    "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
-                    },
-                    "semanticObject": "CAPEX_WF_CustomTaskUI",
-                    "action": "display",
-                    "title": "CAPEX Worfklow Custom Task UI",
-                    "info": "CAPEX Worfklow Custom Task UI",
-                    "subTitle": "CAPEX Worfklow Custom Task UI",
-                    "icon": "sap-icon://account"
-                    }
-                }
-            }
-	},
-	
-	"sap.cloud": {
-		"public": true,
-		"service": "capex.wf.customtaskui"
-	},
-	
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": "",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
-	},
-
-	"sap.ui5": {
-		"flexEnabled": false,
-		"rootView": {
-			"viewName": "sap.wf.demo.CAPEX_WF_CustomTaskUI.view.CAPEX_WF_CustomTaskUI",
-			"type": "XML",
-			"async": true,
-			"id": "CAPEX_WF_CustomTaskUI"
-		},
-		"dependencies": {
-			"minUI5Version": "1.60.1",
-			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
-				"sap.ui.layout": {}
-			}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "sap.wf.demo.CAPEX_WF_CustomTaskUI.i18n.i18n"
-				}
-			}
-		},
-		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"async": true,
-				"viewPath": "sap.wf.demo.CAPEX_WF_CustomTaskUI.view",
-				"controlAggregation": "pages",
-				"controlId": "app",
-				"clearControlAggregation": false
-			},
-			"routes": [{
-				"name": "RouteCAPEX_WF_CustomTaskUI",
-				"pattern": "RouteCAPEX_WF_CustomTaskUI",
-				"target": ["TargetCAPEX_WF_CustomTaskUI"]
-			}],
-			"targets": {
-				"TargetCAPEX_WF_CustomTaskUI": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewId": "CAPEX_WF_CustomTaskUI",
-					"viewName": "CAPEX_WF_CustomTaskUI"
-				}
-			}
-		}
-	}
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "sap.wf.demo.CAPEX_WF_CustomTaskUI",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "ach": "ach",
+    "sourceTemplate": {
+      "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+      "version": "1.40.12"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "CAPEX_WF_CustomTaskUI",
+          "action": "display",
+          "title": "CAPEX Worfklow Custom Task UI",
+          "info": "CAPEX Worfklow Custom Task UI",
+          "subTitle": "CAPEX Worfklow Custom Task UI",
+          "icon": "sap-icon://account"
+        }
+      }
+    },
+    "dataSources": {
+      "Northwind.svc": {
+        "uri": "Northwind/V3/Northwind/Northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml"
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "capex.wf.customtaskui"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "sap.wf.demo.CAPEX_WF_CustomTaskUI.view.CAPEX_WF_CustomTaskUI",
+      "type": "XML",
+      "async": true,
+      "id": "CAPEX_WF_CustomTaskUI"
+    },
+    "dependencies": {
+      "minUI5Version": "1.60.1",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.wf.demo.CAPEX_WF_CustomTaskUI.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "Northwind.svc",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "sap.wf.demo.CAPEX_WF_CustomTaskUI.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteCAPEX_WF_CustomTaskUI",
+          "pattern": "RouteCAPEX_WF_CustomTaskUI",
+          "target": [
+            "TargetCAPEX_WF_CustomTaskUI"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetCAPEX_WF_CustomTaskUI": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CAPEX_WF_CustomTaskUI",
+          "viewName": "CAPEX_WF_CustomTaskUI"
+        }
+      }
+    }
+  }
 }

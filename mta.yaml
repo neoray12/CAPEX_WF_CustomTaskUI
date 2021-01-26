@@ -20,6 +20,8 @@ modules:
   - name: CAPEX_WF_CustomTaskUI-destination-service
     parameters:
       content-target: true
+      service-key:
+        name: CAPEX_WF_CustomTaskUI-destination-content-CAPEX_WF_CustomTaskUI-destination-service-credentials
   parameters:
     content:
       subaccount:
