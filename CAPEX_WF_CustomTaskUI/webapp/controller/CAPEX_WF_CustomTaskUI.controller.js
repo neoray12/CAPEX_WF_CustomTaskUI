@@ -11,7 +11,7 @@ sap.ui.define([
 			onInit: function () {
 
                 $.ajax({
-				url: "/sapwfdemoCAPEX_WF_CustomTaskUI/Northwind/V3/Northwind/Northwind.svc/Orders?$top=5&$format=json",
+				url: "/capexwfcustomtaskui.sapwfdemoCAPEX_WF_CustomTaskUI/Northwind/V3/Northwind/Northwind.svc/Orders?$top=5&$format=json",
 				method: "GET",
 				async: false,
 				success: function (result, xhr, data) {

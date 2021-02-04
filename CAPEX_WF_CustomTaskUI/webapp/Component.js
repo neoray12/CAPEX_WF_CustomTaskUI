@@ -34,7 +34,7 @@ sap.ui.define([
 
             // 2. Read the Task Data
             var that = this;
-            var contextModel = new sap.ui.model.json.JSONModel("/sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/task-instances/" + taskId + "/context");
+            var contextModel = new sap.ui.model.json.JSONModel("/capexwfcustomtaskui.sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/task-instances/" + taskId + "/context");
             var contextData = contextModel.getData();
 
             // 3. Update UI Context Model with Task Properties Data
@@ -107,7 +107,7 @@ sap.ui.define([
         _completeTask: function (taskId, approvalStatus) {
             var token = this._fetchToken();
             $.ajax({
-                url: "/sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/task-instances/" + taskId,
+                url: "/capexwfcustomtaskui.sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/task-instances/" + taskId,
                 method: "PATCH",
                 contentType: "application/json",
                 async: false,
@@ -123,7 +123,7 @@ sap.ui.define([
         _fetchToken: function () {
             var token;
             $.ajax({
-                url: "/sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/xsrf-token",
+                url: "/capexwfcustomtaskui.sapwfdemoCAPEX_WF_CustomTaskUI/bpmworkflowruntime/v1/xsrf-token",
                 method: "GET",
                 async: false,
                 headers: {
